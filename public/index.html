@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b2545" />
+  <meta name="description" content="Don Steve Capital Trust Bank — secure, world-class online banking. Open an account in minutes, move money instantly, and grow your wealth with confidence." />
+  <title>Don Steve Capital Trust Bank — Banking Built on Trust</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       Don Steve Capital Trust Bank — Homepage Styles
+       All-in-one: shared tokens + homepage layout
+       ========================================================= */
+
+    /* ---------- Reset ---------- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ---------- Tokens ---------- */
+    :root {
+      --navy-900: #071a33;
+      --navy-800: #0b2545;
+      --navy-700: #13315c;
+      --navy-600: #1c4272;
+      --gold-500: #d4af37;
+      --gold-400: #e6c757;
+      --gold-300: #f2d472;
+      --teal-500: #0fb5ac;
+      --teal-400: #2dd4bf;
+      --green-500: #10b981;
+      --pink-500: #ec4899;
+      --purple-500: #8b5cf6;
+      --orange-500: #f97316;
+      --blue-500: #3b82f6;
+
+      --ink: #0f172a;
+      --muted: #64748b;
+      --soft: #f6f8fc;
+      --line: #e5e9f2;
+      --white: #ffffff;
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 999px;
+
+      --shadow-sm: 0 2px 8px rgba(11, 37, 69, 0.06);
+      --shadow-md: 0 12px 32px rgba(11, 37, 69, 0.10);
+      --shadow-lg: 0 30px 60px -20px rgba(11, 37, 69, 0.28);
+
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+
+    /* ---------- Base ---------- */
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img, svg { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; transition: color 0.2s var(--ease); }
+
+    h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: var(--navy-800); }
+
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :focus-visible { outline: 2px solid var(--gold-500); outline-offset: 3px; border-radius: 6px; }
+
+    /* ---------- Utility ---------- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* =========================================================
+       NAVBAR
+       ========================================================= */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0.9rem 1.25rem;
+      background: transparent;
+      transition: background 0.35s var(--ease), backdrop-filter 0.35s var(--ease),
+                  box-shadow 0.35s var(--ease), padding 0.35s var(--ease);
+    }
+    .navbar.is-scrolled {
+      background: rgba(7, 26, 51, 0.92);
+      backdrop-filter: saturate(150%) blur(12px);
+      -webkit-backdrop-filter: saturate(150%) blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+      padding: 0.6rem 1.25rem;
+    }
+    .navbar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+    .brand__mark {
+      display: grid;
+      place-items: center;
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-300));
+      color: var(--navy-900);
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+      flex-shrink: 0;
+    }
+    .brand__text em { color: var(--gold-400); font-style: normal; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav__list {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+    }
+    .nav__list a {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    .nav__list a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: var(--gold-400);
+      transition: width 0.3s var(--ease);
+    }
+    .nav__list a:hover { color: #fff; }
+    .nav__list a:hover::after { width: 100%; }
+
+    .nav__actions { display: flex; gap: 0.6rem; align-items: center; }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .nav-toggle span {
+      display: block;
+      height: 2px; width: 20px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1;
+      cursor: pointer;
+      white-space: nowrap;
+      border: 2px solid transparent;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+                  background 0.25s var(--ease), color 0.25s var(--ease),
+                  border-color 0.25s var(--ease);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn--gold {
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+      color: var(--navy-900);
+      box-shadow: 0 8px 22px rgba(212, 175, 55, 0.35);
+    }
+    .btn--gold:hover { box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5); }
+
+    .btn--outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .btn--outline:hover {
+      background: #fff;
+      color: var(--navy-800);
+      border-color: #fff;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border-color: transparent;
+      font-weight: 500;
+    }
+    .btn--ghost:hover { color: var(--gold-400); }
+
+    .btn--dark {
+      background: var(--navy-800);
+      color: #fff;
+    }
+    .btn--dark:hover { background: var(--navy-700); }
+
+    .btn--lg { padding: 1rem 1.9rem; font-size: 1.02rem; border-radius: var(--radius-lg); }
+    .btn--block { width: 100%; }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 8rem 1.5rem 4rem;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: linear-gradient(135deg, #071a33 0%, #0b2545 55%, #13315c 100%);
+      isolation: isolate;
+    }
+
+    .hero__bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+    .hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: float 14s ease-in-out infinite;
+    }
+    .hero__orb--1 {
+      width: 520px; height: 520px;
+      top: -120px; left: -140px;
+      background: radial-gradient(circle, #0fb5ac, transparent 70%);
+    }
+    .hero__orb--2 {
+      width: 460px; height: 460px;
+      bottom: -160px; right: -100px;
+      background: radial-gradient(circle, #d4af37, transparent 70%);
+      animation-delay: 3s;
+    }
+    .hero__orb--3 {
+      width: 380px; height: 380px;
+      top: 40%; left: 55%;
+      background: radial-gradient(circle, #8b5cf6, transparent 70%);
+      opacity: 0.35;
+      animation-delay: 6s;
+    }
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero__copy { max-width: 620px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .pill__dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green-500);
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .hero__title .grad {
+      background: linear-gradient(120deg, #f2d472 0%, #d4af37 40%, #0fb5ac 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero__lead {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      color: #cbd5e1;
+      max-width: 540px;
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+
+    .hero__cta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__trust {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      padding: 1.25rem 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      flex-wrap: wrap;
+    }
+    .hero__trust li { display: flex; flex-direction: column; gap: 0.15rem; }
+    .hero__trust strong {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .hero__trust span {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Hero card visual */
+    .hero__card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      animation: floatY 6s ease-in-out infinite;
+    }
+
+    .cc {
+      position: relative;
+      aspect-ratio: 1.586 / 1;
+      width: 100%;
+      max-width: 420px;
+      margin-left: auto;
+      border-radius: 20px;
+      padding: 1.5rem;
+      background:
+        radial-gradient(120% 100% at 0% 0%, rgba(212, 175, 55, 0.35), transparent 50%),
+        linear-gradient(135deg, #1c4272 0%, #0b2545 60%, #071a33 100%);
+      box-shadow:
+        0 30px 60px -20px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: rotate(-4deg);
+      transition: transform 0.5s var(--ease);
+    }
+    .cc:hover { transform: rotate(-1deg) translateY(-6px); }
+
+    .cc__top { display: flex; justify-content: space-between; align-items: center; }
+    .cc__chip {
+      width: 44px; height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #f2d472, #b8942b);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+    .cc__chip::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 3px;
+      background:
+        linear-gradient(#00000022 1px, transparent 1px) 0 0 / 100% 6px,
+        linear-gradient(90deg, #00000022 1px, transparent 1px) 0 0 / 6px 100%;
+    }
+    .cc__brand {
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-300);
+    }
+    .cc__number {
+      display: flex;
+      gap: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      letter-spacing: 0.12em;
+      color: #f1f5f9;
+      margin: 1rem 0;
+    }
+    .cc__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+    .cc__bottom small {
+      display: block;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+      font-size: 0.65rem;
+    }
+    .cc__bottom p { font-weight: 700; color: #fff; font-size: 0.85rem; }
+
+    .hero__balance {
+      max-width: 420px;
+      margin-left: auto;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      color: #fff;
+    }
+    .hero__balance small {
+      display: block;
+      font-size: 0.7rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+    .hero__balance p {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .delta {
+      color: var(--green-500);
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius-full);
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px; height: 42px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      display: grid;
+      place-items: start center;
+      padding-top: 6px;
+      z-index: 2;
+    }
+    .hero__scroll span {
+      width: 4px; height: 8px;
+      border-radius: 2px;
+      background: var(--gold-400);
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+
+    /* =========================================================
+       LOGOS STRIP
+       ========================================================= */
+    .logos {
+      padding: 2.5rem 1.5rem 1rem;
+      text-align: center;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    .logos__label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    .logos__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      color: #cbd5e1;
+      letter-spacing: 0.02em;
+    }
+    .logos__row span {
+      transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .logos__row span:hover { color: var(--navy-700); transform: translateY(-2px); }
+
+    /* =========================================================
+       SECTION SHELL
+       ========================================================= */
+    .section { padding: clamp(3.5rem, 8vw, 6rem) 1.5rem; position: relative; }
+    .section--soft { background: var(--soft); }
+    .section--dark {
+      background:
+        radial-gradient(900px 400px at 100% 0%, #1e3a6b 0%, transparent 60%),
+        linear-gradient(135deg, #071a33 0%, #0b2545 100%);
+      color: #e2e8f0;
+    }
+
+    .section__head {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--teal-500);
+      margin-bottom: 0.75rem;
+    }
+    .kicker--gold { color: var(--gold-400); }
+
+    .section__head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .section--dark .section__head h2 { color: #fff; }
+
+    .section__lead {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+    .text-light { color: #fff; }
+    .text-light-muted { color: #94a3b8; }
+
+    /* ---------- Grids ---------- */
+    .grid { display: grid; gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .grid--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+    /* =========================================================
+       SERVICE CARDS (Accounts)
+       ========================================================= */
+    .service-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+                  border-color 0.35s var(--ease);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(212, 175, 55, 0.08));
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+      pointer-events: none;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card h3 { font-size: 1.2rem; margin-top: 0.5rem; }
+    .service-card p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
+
+    .service-card__icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      box-shadow: 0 12px 24px -8px currentColor;
+    }
+    .service-card__icon svg { width: 28px; height: 28px; }
+    .service-card__icon--blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .service-card__icon--gold { background: linear-gradient(135deg, #f2d472, #b8942b); }
+    .service-card__icon--green { background: linear-gradient(135deg, #2dd4bf, #059669); }
+
+    .link-arrow {
+      font-weight: 600;
+      color: var(--navy-700);
+      font-size: 0.92rem;
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      transition: transform 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .link-arrow:hover { color: var(--gold-500); transform: translateX(4px); }
+
+    /* =========================================================
+       LOAN CARDS
+       ========================================================= */
+    .loan-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease),
+                  border-color 0.35s var(--ease);
+      position: relative;
+    }
+    .loan-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+    .loan-card h3 { color: #fff; font-size: 1.2rem; }
+
+    .loan-card__rate {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+    .loan-card__rate strong {
+      color: var(--gold-400);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .loan-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+    .loan-card__list li {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .loan-card__list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal-400);
+      font-weight: 700;
+    }
+
+    .loan-card--featured {
+      background: linear-gradient(160deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.03));
+      border-color: rgba(212, 175, 55, 0.5);
+      box-shadow: 0 20px 40px -20px rgba(212, 175, 55, 0.4);
+    }
+    .loan-card__badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gold-500);
+      color: var(--navy-900);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* =========================================================
+       MINI CARDS (Services)
+       ========================================================= */
+    .mini-card {
+      background: #fff;
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .mini-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .mini-card__emoji {
+      display: inline-grid;
+      place-items: center;
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+      font-size: 1.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .mini-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .mini-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+
+    /* =========================================================
+       DIGITAL TOOLS
+       ========================================================= */
+    .tools {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .tools__panel {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-full);
+      background: #f1f5f9;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.25s var(--ease), color 0.25s var(--ease),
+                  transform 0.25s var(--ease);
+    }
+    .tab:hover { transform: translateY(-1px); }
+    .tab.is-active {
+      background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
+      color: #fff;
+    }
+
+    .tab-panel { display: none; animation: fadeSlide 0.4s var(--ease); }
+    .tab-panel.is-active { display: block; }
+    .tab-panel h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .tab-panel p { color: var(--muted); margin-bottom: 1rem; }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .check-list li {
+      padding-left: 1.75rem;
+      position: relative;
+      color: var(--navy-700);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 20px; height: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--green-500);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Calculator */
+    .calc-card {
+      background: linear-gradient(160deg, var(--navy-800), var(--navy-900));
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.35), transparent 70%);
+      filter: blur(30px);
+    }
+    .calc-card h3 {
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+    }
+    .calc-card__sub {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-field { margin-bottom: 1rem; }
+    .calc-field label {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    .calc-field input[type="number"] {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .calc-field input[type="number"]:focus {
+      outline: none;
+      border-color: var(--gold-400);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .calc-field input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold-500);
+      margin-top: 0.25rem;
+    }
+    .calc-out {
+      display: block;
+      text-align: right;
+      color: var(--gold-300);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .calc-result {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+      margin: 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .calc-result small {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-300);
+      font-weight: 600;
+    }
+    .calc-result strong {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .calc-interest {
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    /* =========================================================
+       TESTIMONIALS
+       ========================================================= */
+    .quote {
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .quote:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .quote__stars {
+      color: var(--gold-500);
+      letter-spacing: 0.15em;
+      font-size: 1rem;
+    }
+    .quote blockquote {
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .quote figcaption {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--line);
+    }
+    .avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--navy-700), var(--teal-500));
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .quote figcaption strong {
+      display: block;
+      color: var(--navy-800);
+      font-size: 0.95rem;
+    }
+    .quote figcaption small {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* =========================================================
+       CTA BANNER
+       ========================================================= */
+    .cta-banner {
+      padding: 0 1.5rem;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+    .cta-banner__inner {
+      background:
+        radial-gradient(600px 200px at 10% 0%, rgba(212, 175, 55, 0.25), transparent 60%),
+        linear-gradient(135deg, var(--navy-700), var(--navy-900));
+      border-radius: 24px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner__inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 90% 100%, rgba(15, 181, 172, 0.2), transparent 45%);
+      pointer-events: none;
+    }
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .cta-banner p { color: #cbd5e1; font-size: 1rem; }
+    .cta-banner__actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+      margin-top: 5rem;
+      background: linear-gradient(180deg, var(--navy-900), #04101f);
+      color: #cbd5e1;
+      padding: 4rem 1.5rem 1.5rem;
+    }
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer__col--brand p {
+      margin: 1rem 0 1.25rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #94a3b8;
+      max-width: 340px;
+    }
+
+    .brand--footer {
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+
+    .footer__col h4 {
+      color: #fff;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .footer__col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .footer__col ul a {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      transition: color 0.2s var(--ease);
+    }
+    .footer__col ul a:hover { color: var(--gold-400); }
+
+    .socials {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .social {
+      display: grid;
+      place-items: center;
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease),
+                  color 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .social svg { width: 18px; height: 18px; fill: currentColor; }
+    .social:hover {
+      background: var(--gold-500);
+      color: var(--navy-900);
+      border-color: var(--gold-500);
+      transform: translateY(-2px);
+    }
+
+    .footer__bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+    }
+    .footer__legal a { color: #64748b; }
+    .footer__legal a:hover { color: var(--gold-400); }
+
+    /* =========================================================
+       ANIMATIONS
+       ========================================================= */
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.05); }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    @keyframes scrollDot {
+      0% { transform: translateY(0); opacity: 1; }
+      60% { transform: translateY(14px); opacity: 0.3; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 1024px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero__card { display: none; }
+      .tools { grid-template-columns: 1fr; }
+      .footer__inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-toggle { display: flex; }
+
+      .nav {
+        position: fixed;
+        top: 68px;
+        right: 1rem;
+        left: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        background: rgba(7, 26, 51, 0.98);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-12px);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.28s var(--ease), opacity 0.28s var(--ease),
+                    visibility 0.28s var(--ease);
+      }
+      .nav.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav__list {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .nav__list a {
+        display: block;
+        padding: 0.75rem 0.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .nav__list a::after { display: none; }
+      .nav__actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 0.75rem;
+      }
+      .nav__actions .btn { width: 100%; }
+
+      .hero { padding-top: 6.5rem; }
+      .hero__trust { gap: 1.25rem; }
+      .hero__trust strong { font-size: 1.15rem; }
+    }
+
+    @media (max-width: 640px) {
+      .navbar { padding: 0.7rem 1rem; }
+      .brand__text { font-size: 0.95rem; }
+
+      .hero { padding: 6rem 1.25rem 3rem; }
+      .hero__cta { flex-direction: column; align-items: stretch; }
+      .hero__cta .btn { width: 100%; }
+
+      .section { padding: 3rem 1.25rem; }
+      .cta-banner { padding: 0 1.25rem; }
+      .cta-banner__inner {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cta-banner__actions { width: 100%; flex-direction: column; }
+      .cta-banner__actions .btn { width: 100%; }
+
+      .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer__legal { flex-wrap: wrap; gap: 0.75rem 1rem; }
+
+      .tools__panel, .calc-card { padding: 1.5rem; }
+      .tab { font-size: 0.82rem; padding: 0.5rem 0.9rem; }
+    }
+
+    /* =========================================================
+       ACCESSIBILITY
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================== NAVBAR =================== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="/" class="brand" aria-label="Don Steve Capital Trust Bank home">
+        <span class="brand__mark" aria-hidden="true">DS</span>
+        <span class="brand__text">Don <em>Steve</em> Capital Trust Bank</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+        type="button"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#accounts">Accounts</a></li>
+          <li><a href="#loans">Loans</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tools">Digital Tools</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
+
+        <div class="nav__actions" id="nav-auth">
+          <a href="/login.html" class="btn btn--ghost">Login</a>
+          <a href="/register.html" class="btn btn--gold">Open Account</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="hero__orb hero__orb--1"></span>
+      <span class="hero__orb hero__orb--2"></span>
+      <span class="hero__orb hero__orb--3"></span>
+      <span class="hero__grid"></span>
+    </div>
+
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="pill">
+          <span class="pill__dot"></span>
+          Trusted by 2M+ customers worldwide
+        </span>
+
+        <h1 id="heroTitle" class="hero__title">
+          Banking built on <span class="grad">trust</span>,
+          designed for <span class="grad">tomorrow</span>.
+        </h1>
+
+        <p class="hero__lead">
+          Open an account in minutes, move money instantly, and grow your
+          wealth with the security of a world-class financial institution.
+        </p>
+
+        <div class="hero__cta">
+          <a href="/register.html" class="btn btn--gold btn--lg">
+            Open an Account
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#services" class="btn btn--outline btn--lg">Explore Services</a>
+        </div>
+
+        <ul class="hero__trust" aria-label="Trust signals">
+          <li><strong>$42B+</strong><span>Assets managed</span></li>
+          <li><strong>256-bit</strong><span>Encryption</span></li>
+          <li><strong>24/7</strong><span>Human support</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__card" aria-hidden="true">
+        <div class="cc">
+          <div class="cc__top">
+            <span class="cc__chip"></span>
+            <span class="cc__brand">DON STEVE</span>
+          </div>
+          <div class="cc__number">
+            <span>5412</span><span>••••</span><span>••••</span><span>8823</span>
+          </div>
+          <div class="cc__bottom">
+            <div>
+              <small>Card Holder</small>
+              <p>KELVIN IKPENI</p>
+            </div>
+            <div>
+              <small>Expires</small>
+              <p>08/29</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__balance">
+          <div>
+            <small>Total balance</small>
+            <p>$128,540.22</p>
+          </div>
+          <span class="delta">▲ 4.8%</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#accounts" class="hero__scroll" aria-label="Scroll to content">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- =================== LOGOS =================== -->
+  <section class="logos" aria-label="Featured in">
+    <p class="logos__label">Trusted and featured by</p>
+    <div class="logos__row">
+      <span>Forbes</span>
+      <span>Bloomberg</span>
+      <span>Reuters</span>
+      <span>Financial Times</span>
+      <span>CNBC</span>
+      <span>TechCrunch</span>
+    </div>
+  </section>
+
+  <!-- =================== ACCOUNTS =================== -->
+  <section class="section" id="accounts" aria-labelledby="accountsTitle">
+    <div class="section__head">
+      <span class="kicker">Accounts</span>
+      <h2 id="accountsTitle">Find the account that fits your life</h2>
+      <p class="section__lead">
+        From everyday spending to long-term wealth, we have an account
+        engineered for every goal — with zero hidden fees.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="service-card reveal">
+        <div class="service-card__icon service-card__icon--blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 7h18M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2M3 7h18v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 15h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Everyday Current Account</h3>
+        <p>Free debit card, instant transfers, and no monthly maintenance fees. Perfect for daily life.</p>
+        <a href="/register.html" class="link-arrow">Open current account →</a>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-card__icon service-card__icon--gold" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v18M5 8c0-1.7 3.1-3 7-3s7 1.3 7 3-3.1 3-7 3-7 1.3-7 3 3.1 3 7 3 7-1.3 7-3"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>High-Yield Savings</h3>
+        <p>Earn up to 5.25% APY with no minimum balance and instant access to your money.</p>
+        <a href="/register.html" class="link-arrow">Start saving →</a>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-card__icon service-card__icon--green" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 17l5-5 4 3 5-7 4 4" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 4h7v7" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Investment & Wealth</h3>
+        <p>Commission-free stocks, ETFs, and managed portfolios to grow your wealth over time.</p>
+        <a href="/register.html" class="link-arrow">Start investing →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- =================== LOANS =================== -->
+  <section class="section section--dark" id="loans" aria-labelledby="loansTitle">
+    <div class="section__head">
+      <span class="kicker kicker--gold">Loans</span>
+      <h2 id="loansTitle" class="text-light">Borrow smarter, not harder</h2>
+      <p class="section__lead text-light-muted">
+        Transparent rates, no prepayment penalties, and same-day decisions.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="loan-card reveal">
+        <h3>Personal Loan</h3>
+        <p class="loan-card__rate">From <strong>6.99%</strong> APR</p>
+        <ul class="loan-card__list">
+          <li>$1,000 – $50,000</li>
+          <li>Funded in 24 hours</li>
+          <li>No origination fee</li>
+        </ul>
+        <a href="#support" class="btn btn--gold btn--block">Check eligibility</a>
+      </article>
+
+      <article class="loan-card loan-card--featured reveal">
+        <span class="loan-card__badge">Most popular</span>
+        <h3>Home Mortgage</h3>
+        <p class="loan-card__rate">From <strong>4.25%</strong> APR</p>
+        <ul class="loan-card__list">
+          <li>Up to 30-year terms</li>
+          <li>Free pre-approval</li>
+          <li>Dedicated advisor</li>
+        </ul>
+        <a href="#support" class="btn btn--dark btn--block">Get pre-approved</a>
+      </article>
+
+      <article class="loan-card reveal">
+        <h3>Business Loan</h3>
+        <p class="loan-card__rate">From <strong>7.49%</strong> APR</p>
+        <ul class="loan-card__list">
+          <li>Up to $500,000</li>
+          <li>Flexible repayment</li>
+          <li>Fast online application</li>
+        </ul>
+        <a href="#support" class="btn btn--gold btn--block">Talk to us</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- =================== SERVICES =================== -->
+  <section class="section" id="services" aria-labelledby="servicesTitle">
+    <div class="section__head">
+      <span class="kicker">Services</span>
+      <h2 id="servicesTitle">Everything you need, all in one place</h2>
+    </div>
+
+    <div class="grid grid--4">
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">🏦</span>
+        <h3>Checking & Savings</h3>
+        <p>Manage accounts, deposit checks, and pay bills in seconds.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">💳</span>
+        <h3>Credit & Debit Cards</h3>
+        <p>Zero-fee cards with cashback and global acceptance.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">🌍</span>
+        <h3>International Transfers</h3>
+        <p>Send money to over 120 countries at real exchange rates.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">🛡️</span>
+        <h3>Fraud Protection</h3>
+        <p>Real-time alerts and 24/7 monitoring on every transaction.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">📈</span>
+        <h3>Investments</h3>
+        <p>Build wealth with stocks, ETFs, and managed portfolios.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">🏠</span>
+        <h3>Mortgages</h3>
+        <p>Competitive rates and a dedicated advisor for your home.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">💼</span>
+        <h3>Business Banking</h3>
+        <p>Payroll, invoicing, and merchant tools for growing teams.</p>
+      </article>
+      <article class="mini-card reveal">
+        <span class="mini-card__emoji" aria-hidden="true">🎓</span>
+        <h3>Education Savings</h3>
+        <p>Tax-advantaged plans for you and your family's future.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =================== DIGITAL TOOLS =================== -->
+  <section class="section section--soft" id="tools" aria-labelledby="toolsTitle">
+    <div class="section__head">
+      <span class="kicker">Digital Tools</span>
+      <h2 id="toolsTitle">Banking that moves at your speed</h2>
+      <p class="section__lead">
+        Powerful, intuitive tools designed for the way you actually live.
+      </p>
+    </div>
+
+    <div class="tools">
+      <div class="tools__panel">
+        <div class="tabs" role="tablist" aria-label="Digital tools">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="mobile" type="button">📱 Mobile Banking</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="payments" type="button">💳 Online Payments</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="calc" type="button">🧮 Calculators</button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel is-active" data-panel="mobile">
+            <h3>Bank from anywhere</h3>
+            <p>Deposit checks with your camera, freeze cards instantly, and get real-time alerts — all from our mobile app.</p>
+            <ul class="check-list">
+              <li>Instant card freeze & unfreeze</li>
+              <li>Mobile check deposit</li>
+              <li>Face & fingerprint login</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" data-panel="payments">
+            <h3>Send & receive instantly</h3>
+            <p>Pay friends, split bills, and pay merchants with Zelle, ACH, or wire — no fees between Don Steve accounts.</p>
+            <ul class="check-list">
+              <li>Same-day ACH & wires</li>
+              <li>Recurring bill pay</li>
+              <li>Automatic payment reminders</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" data-panel="calc">
+            <h3>Plan with confidence</h3>
+            <p>Model your mortgage, savings goals, or loan payments in seconds with our built-in calculators.</p>
+            <ul class="check-list">
+              <li>Mortgage & refinance</li>
+              <li>Compound savings growth</li>
+              <li>Loan payoff estimator</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h3>Compound Savings Calculator</h3>
+        <p class="calc-card__sub">See how your money grows over time.</p>
+
+        <div class="calc-field">
+          <label for="calcInitial">Initial deposit</label>
+          <input type="number" id="calcInitial" value="5000" min="0" step="100" />
+        </div>
+        <div class="calc-field">
+          <label for="calcMonthly">Monthly contribution</label>
+          <input type="number" id="calcMonthly" value="300" min="0" step="10" />
+        </div>
+        <div class="calc-field">
+          <label for="calcRate">Annual rate (%)</label>
+          <input type="number" id="calcRate" value="5.25" min="0" step="0.05" />
+        </div>
+        <div class="calc-field">
+          <label for="calcYears">Years</label>
+          <input type="range" id="calcYears" min="1" max="40" value="15" />
+          <output id="calcYearsOut" class="calc-out">15 years</output>
+        </div>
+
+        <div class="calc-result" aria-live="polite">
+          <small>Estimated balance</small>
+          <strong id="calcBalance">$0.00</strong>
+          <span id="calcInterest" class="calc-interest">Total interest: $0.00</span>
+        </div>
+
+        <a href="/register.html" class="btn btn--gold btn--block">Start growing today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== TESTIMONIALS =================== -->
+  <section class="section" aria-labelledby="testimonialsTitle">
+    <div class="section__head">
+      <span class="kicker">Testimonials</span>
+      <h2 id="testimonialsTitle">Loved by customers worldwide</h2>
+    </div>
+
+    <div class="grid grid--3">
+      <figure class="quote reveal">
+        <div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>
+          "I switched from my old bank and never looked back. The app is
+          beautiful, transfers are instant, and the support team actually
+          answers the phone."
+        </blockquote>
+        <figcaption>
+          <span class="avatar" aria-hidden="true">AO</span>
+          <div><strong>Amara Okafor</strong><small>Small business owner</small></div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>
+          "Opening an account took less than three minutes. The fraud alerts
+          saved me twice this year. This is what banking should feel like."
+        </blockquote>
+        <figcaption>
+          <span class="avatar" aria-hidden="true">JM</span>
+          <div><strong>James Mitchell</strong><small>Software engineer</small></div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>
+          "The savings calculator showed me exactly how much I'd have in 10
+          years. I'm finally on track for retirement."
+        </blockquote>
+        <figcaption>
+          <span class="avatar" aria-hidden="true">PN</span>
+          <div><strong>Priya Nair</strong><small>Doctor</small></div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- =================== CTA BANNER =================== -->
+  <section class="cta-banner" aria-labelledby="ctaTitle">
+    <div class="cta-banner__inner">
+      <div>
+        <h2 id="ctaTitle">Ready to bank better?</h2>
+        <p>Open your free Don Steve Capital Trust Bank account in under 3 minutes.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="/register.html" class="btn btn--gold btn--lg">Open an Account</a>
+        <a href="/login.html" class="btn btn--outline btn--lg">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="footer" id="support">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--brand">
+        <a href="/" class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true">DS</span>
+          <span class="brand__text">Don <em>Steve</em> Capital Trust Bank</span>
+        </a>
+        <p>Banking built on trust, designed for tomorrow. Member FDIC (illustrative). Equal Housing Lender.</p>
+        <div class="socials" aria-label="Social media">
+          <a href="#" aria-label="Twitter" class="social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.6.8-2.5 1A3.9 3.9 0 0 0 12 8.5c0 .3 0 .6.1.9A11 11 0 0 1 3.2 4.9a3.9 3.9 0 0 0 1.2 5.2c-.6 0-1.2-.2-1.7-.5v.1c0 1.9 1.3 3.4 3.1 3.8-.6.2-1.2.2-1.8.1.5 1.5 1.9 2.6 3.6 2.6A7.9 7.9 0 0 1 2 17.9a11.1 11.1 0 0 0 6 1.8c7.3 0 11.2-6 11.2-11.2v-.5c.8-.6 1.4-1.3 2-2.1Z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4V9Z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.8l.4-3.2h-3.2V8.6c0-.9.2-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2.6H7.6V14h2.8v8h3.1Z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6Zm0 7.3A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9ZM17.8 7.4a1 1 0 1 1-1-1 1 1 0 0 1 1 1ZM20 8.5a5 5 0 0 0-1.4-3.6A5 5 0 0 0 15 3.5 24 24 0 0 0 12 3.3a24 24 0 0 0-3 .2A5 5 0 0 0 5.4 4.9 5 5 0 0 0 4 8.5a24 24 0 0 0-.2 3 24 24 0 0 0 .2 3A5 5 0 0 0 5.4 18a5 5 0 0 0 3.6 1.4 24 24 0 0 0 3 .2 24 24 0 0 0 3-.2A5 5 0 0 0 18.6 18a5 5 0 0 0 1.4-3.6 24 24 0 0 0 .2-3 24 24 0 0 0-.2-2.9Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#accounts">Checking & Savings</a></li>
+          <li><a href="#loans">Personal Loans</a></li>
+          <li><a href="#loans">Mortgages</a></li>
+          <li><a href="#services">Credit Cards</a></li>
+          <li><a href="#services">Investments</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="mailto:support@donstevebank.com">support@donstevebank.com</a></li>
+          <li><a href="tel:+18005550100">+1 (800) 555-0100</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Report fraud</a></li>
+          <li><a href="#">Locations</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span id="year"></span> Don Steve Capital Trust Bank. All rights reserved.</p>
+      <ul class="footer__legal">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Disclosures</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       Don Steve Capital Trust Bank — Homepage Interactions
+       ========================================================= */
+    (function () {
+      'use strict';
+
+      /* ---------- Year ---------- */
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ---------- Navbar scroll state ---------- */
+      const navbar = document.getElementById('navbar');
+      const onScroll = () => {
+        if (!navbar) return;
+        if (window.scrollY > 20) navbar.classList.add('is-scrolled');
+        else navbar.classList.remove('is-scrolled');
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* ---------- Mobile menu toggle ---------- */
+      const navToggle = document.getElementById('navToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      if (navToggle && primaryNav) {
+        navToggle.addEventListener('click', () => {
+          const open = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', String(!open));
+          primaryNav.classList.toggle('is-open', !open);
+        });
+
+        // Close menu when a link is clicked
+        primaryNav.querySelectorAll('a').forEach((a) => {
+          a.addEventListener('click', () => {
+            navToggle.setAttribute('aria-expanded', 'false');
+            primaryNav.classList.remove('is-open');
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!primaryNav.classList.contains('is-open')) return;
+          if (primaryNav.contains(e.target) || navToggle.contains(e.target)) return;
+          navToggle.setAttribute('aria-expanded', 'false');
+          primaryNav.classList.remove('is-open');
+        });
+      }
+
+      /* ---------- Tabs (Digital Tools) ---------- */
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.tab-panel');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          tabs.forEach((t) => {
+            const active = t === tab;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', String(active));
+          });
+          panels.forEach((p) => {
+            p.classList.toggle('is-active', p.getAttribute('data-panel') === target);
+          });
+        });
+      });
+
+      /* ---------- Compound savings calculator ---------- */
+      const initial = document.getElementById('calcInitial');
+      const monthly = document.getElementById('calcMonthly');
+      const rate = document.getElementById('calcRate');
+      const years = document.getElementById('calcYears');
+      const yearsOut = document.getElementById('calcYearsOut');
+      const balanceEl = document.getElementById('calcBalance');
+      const interestEl = document.getElementById('calcInterest');
+
+      const fmt = (n) =>
+        new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0,
+        }).format(n);
+
+      function compute() {
+        if (!initial || !monthly || !rate || !years) return;
+
+        const P = Math.max(0, Number(initial.value) || 0);
+        const m = Math.max(0, Number(monthly.value) || 0);
+        const r = Math.max(0, Number(rate.value) || 0) / 100;
+        const t = Math.max(1, Number(years.value) || 1);
+
+        if (yearsOut) yearsOut.textContent = t + (t === 1 ? ' year' : ' years');
+
+        const months = t * 12;
+        const monthlyRate = r / 12;
+
+        // Compound interest with monthly contributions
+        const fvInitial = P * Math.pow(1 + monthlyRate, months);
+        const fvContrib =
+          monthlyRate === 0
+            ? m * months
+            : m * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+
+        const total = fvInitial + fvContrib;
+        const contributed = P + m * months;
+        const interest = total - contributed;
+
+        if (balanceEl) balanceEl.textContent = fmt(total);
+        if (interestEl)
+          interestEl.textContent =
+            'Total interest: ' + fmt(interest) +
+            ' • Contributed: ' + fmt(contributed);
+      }
+
+      ['input', 'change'].forEach((ev) => {
+        initial && initial.addEventListener(ev, compute);
+        monthly && monthly.addEventListener(ev, compute);
+        rate && rate.addEventListener(ev, compute);
+        years && years.addEventListener(ev, compute);
+      });
+
+      compute();
+
+      /* ---------- Reveal-on-scroll ---------- */
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && reveals.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -60px 0px', threshold: 0.08 }
+        );
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      /* ---------- Navbar auth state (kept optional so homepage works standalone) ----------
+         If your /js/main.js is loaded and provides getCurrentUser(), this will
+         try to use it. Otherwise it silently skips. */
+      (async function syncAuth() {
+        const authBox = document.getElementById('nav-auth');
+        if (!authBox || typeof window.getCurrentUser !== 'function') return;
+        try {
+          const user = await window.getCurrentUser();
+          if (user) {
+            authBox.innerHTML =
+              '<a href="/dashboard.html" class="btn btn--ghost">Dashboard</a>' +
+              '<a href="#" id="navLogout" class="btn btn--gold">Logout</a>';
+            const btn = document.getElementById('navLogout');
+            if (btn && typeof window.logout === 'function') {
+              btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.logout();
+              });
+            }
+          }
+        } catch (_) {
+          /* not logged in — leave defaults */
+        }
+      })();
+    })();
+  </script>
+</body>
+</html>

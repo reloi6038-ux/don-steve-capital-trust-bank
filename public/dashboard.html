@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b2545" />
+  <title>Dashboard — Don Steve Capital Trust Bank</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body class="ds-dashboard">
+
+<div class="ds-layout" id="layout">
+
+  <!-- ============================================================
+       SIDEBAR
+       ============================================================ -->
+  <aside class="ds-sidebar" aria-label="Main navigation">
+    <div class="ds-sidebar__brand">
+      <span class="ds-sidebar__brand-mark" aria-hidden="true">DS</span>
+      <span class="ds-sidebar__brand-text">
+        <strong>Don <em>Steve</em></strong>
+        <small>Capital Trust Bank</small>
+      </span>
+    </div>
+
+    <nav class="ds-sidebar__nav">
+      <p class="ds-nav-section">Main</p>
+
+      <button class="ds-nav-item is-active" data-view="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V10Z" stroke-linejoin="round"/></svg>
+        <span class="ds-nav-item__label">Overview</span>
+      </button>
+
+      <button class="ds-nav-item" data-view="accounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18v12H3z" stroke-linejoin="round"/><path d="M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+        <span class="ds-nav-item__label">Accounts</span>
+      </button>
+
+      <button class="ds-nav-item" data-view="transactions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h13l-3-3M21 17H8l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="ds-nav-item__label">Transactions</span>
+      </button>
+
+      <p class="ds-nav-section">Money</p>
+
+      <button class="ds-nav-item" data-action="open-deposit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        <span class="ds-nav-item__label">Deposit</span>
+      </button>
+
+      <button class="ds-nav-item" data-action="open-withdraw">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14" stroke-linecap="round"/></svg>
+        <span class="ds-nav-item__label">Withdraw</span>
+      </button>
+
+      <button class="ds-nav-item" data-action="open-transfer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h12l-3-3M20 16H8l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="ds-nav-item__label">Transfer</span>
+      </button>
+
+      <p class="ds-nav-section">Other</p>
+
+      <button class="ds-nav-item" data-view="cards">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+        <span class="ds-nav-item__label">Cards</span>
+        <span class="ds-nav-item__badge">Soon</span>
+      </button>
+
+      <button class="ds-nav-item" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+        <span class="ds-nav-item__label">Settings</span>
+      </button>
+    </nav>
+
+    <div class="ds-sidebar__footer">
+      <div class="ds-sidebar__user">
+        <div class="ds-sidebar__avatar" id="sidebarAvatar">DS</div>
+        <div class="ds-sidebar__user-info">
+          <strong id="sidebarName">User</strong>
+          <small id="sidebarEmail">user@example.com</small>
+        </div>
+      </div>
+      <button class="ds-icon-btn" id="logoutBtn" aria-label="Sign out" title="Sign out">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       MAIN
+       ============================================================ -->
+  <main class="ds-main">
+
+    <!-- Topbar -->
+    <header class="ds-topbar">
+      <button class="ds-topbar__toggle" id="sidebarToggle" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+
+      <div class="ds-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3" stroke-linecap="round"/></svg>
+        <input type="search" id="searchInput" placeholder="Search transactions, accounts…" aria-label="Search" />
+      </div>
+
+      <div class="ds-topbar__actions">
+        <button class="ds-icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" id="themeIcon"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button class="ds-icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8a6 6 0 1 1 12 0v4.5l1.5 3.5h-15L6 12.5V8Z" stroke-linejoin="round"/><path d="M10 19a2 2 0 1 0 4 0" stroke-linecap="round"/></svg>
+          <span class="ds-badge-dot" id="notifBadge">3</span>
+        </button>
+
+        <button class="ds-icon-btn" id="helpBtn" aria-label="Help" title="Help">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.4 1.7c-.8.9-1.9 1.4-1.9 2.8M12 17h.01" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Notifications popover -->
+    <div class="ds-popover" id="notifPopover" role="dialog" aria-label="Notifications">
+      <div class="ds-popover__head">
+        <strong>Notifications</strong>
+        <button id="markAllRead">Mark all read</button>
+      </div>
+      <div class="ds-popover__list" id="notifList"></div>
+    </div>
+
+    <!-- Page content -->
+    <div class="ds-content">
+
+      <div class="ds-page-head">
+        <div>
+          <h1>Welcome back, <span id="userFirstName">User</span> 👋</h1>
+          <p id="dashboardSubtitle">Here's a snapshot of your finances today.</p>
+        </div>
+        <div class="ds-actions">
+          <button class="ds-btn ds-btn--ghost" data-action="open-new-account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            New Account
+          </button>
+          <button class="ds-btn ds-btn--gold" data-action="open-transfer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h12l-3-3M20 16H8l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Send Money
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <section class="ds-stats" aria-label="Account summary">
+        <article class="ds-stat">
+          <div class="ds-stat__head">
+            <span class="ds-stat__label">Total Balance</span>
+            <span class="ds-stat__icon ds-stat__icon--gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M5 8c0-1.7 3.1-3 7-3s7 1.3 7 3-3.1 3-7 3-7 1.3-7 3 3.1 3 7 3 7-1.3 7-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="ds-stat__value" id="statTotalBalance" data-counter>$0.00</div>
+          <span class="ds-stat__delta ds-stat__delta--up">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12"><path d="M6 15l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            4.8% this month
+          </span>
+        </article>
+
+        <article class="ds-stat">
+          <div class="ds-stat__head">
+            <span class="ds-stat__label">Active Accounts</span>
+            <span class="ds-stat__icon ds-stat__icon--teal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18v12H3z" stroke-linejoin="round"/><path d="M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+            </span>
+          </div>
+          <div class="ds-stat__value" id="statAccounts" data-counter>0</div>
+          <span class="ds-stat__sub" id="statAccountsSub">savings, current, fixed</span>
+        </article>
+
+        <article class="ds-stat">
+          <div class="ds-stat__head">
+            <span class="ds-stat__label">Income (30d)</span>
+            <span class="ds-stat__icon ds-stat__icon--green" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="ds-stat__value" id="statIncome" data-counter>$0.00</div>
+          <span class="ds-stat__sub">deposits + transfers in</span>
+        </article>
+
+        <article class="ds-stat">
+          <div class="ds-stat__head">
+            <span class="ds-stat__label">Spending (30d)</span>
+            <span class="ds-stat__icon ds-stat__icon--purple" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="ds-stat__value" id="statSpending" data-counter>$0.00</div>
+          <span class="ds-stat__sub">withdrawals + transfers out</span>
+        </article>
+      </section>
+
+      <!-- Charts row -->
+      <section class="ds-grid ds-grid--2-1" aria-label="Financial analytics">
+        <div class="ds-panel">
+          <div class="ds-panel__head">
+            <div>
+              <h3>Balance Trend</h3>
+              <small>Last 30 days</small>
+            </div>
+            <div class="ds-panel__tabs" role="tablist">
+              <button class="is-active" data-range="30">30d</button>
+              <button data-range="90">90d</button>
+              <button data-range="365">1y</button>
+            </div>
+          </div>
+          <div class="ds-chart" id="balanceChart">
+            <div class="ds-chart__tooltip" id="balanceTooltip"></div>
+            <svg viewBox="0 0 800 240" preserveAspectRatio="none" role="img" aria-label="Balance trend chart">
+              <defs>
+                <linearGradient id="balanceGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0fb5ac" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#0fb5ac" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <g id="balanceGrid"></g>
+              <path id="balanceArea" class="ds-chart__area" d="" />
+              <path id="balanceLine" class="ds-chart__line" d="" />
+              <g id="balanceDots"></g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="ds-panel">
+          <div class="ds-panel__head">
+            <div>
+              <h3>Spending Breakdown</h3>
+              <small>Last 30 days</small>
+            </div>
+          </div>
+          <div class="ds-donut">
+            <div class="ds-donut__wrap">
+              <svg viewBox="0 0 200 200" role="img" aria-label="Spending breakdown">
+                <circle class="ds-donut__track" cx="100" cy="100" r="80" />
+                <circle class="ds-donut__seg" id="donutSeg1" cx="100" cy="100" r="80" stroke="#0fb5ac" />
+                <circle class="ds-donut__seg" id="donutSeg2" cx="100" cy="100" r="80" stroke="#d4af37" />
+                <circle class="ds-donut__seg" id="donutSeg3" cx="100" cy="100" r="80" stroke="#8b5cf6" />
+                <circle class="ds-donut__seg" id="donutSeg4" cx="100" cy="100" r="80" stroke="#ef4444" />
+              </svg>
+              <div class="ds-donut__center">
+                <strong id="donutTotal">$0</strong>
+                <small>Total Spent</small>
+              </div>
+            </div>
+            <div class="ds-legend" id="donutLegend"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick actions -->
+      <section class="ds-panel" aria-label="Quick actions">
+        <div class="ds-panel__head">
+          <h3>Quick Actions</h3>
+        </div>
+        <div class="ds-quick">
+          <button class="ds-quick__btn ds-quick__btn--deposit" data-action="open-deposit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            <span>Deposit</span>
+            <small>Add funds</small>
+          </button>
+          <button class="ds-quick__btn ds-quick__btn--withdraw" data-action="open-withdraw">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14" stroke-linecap="round"/></svg>
+            <span>Withdraw</span>
+            <small>Cash out</small>
+          </button>
+          <button class="ds-quick__btn ds-quick__btn--transfer" data-action="open-transfer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h12l-3-3M20 16H8l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Transfer</span>
+            <small>Send money</small>
+          </button>
+          <button class="ds-quick__btn ds-quick__btn--account" data-action="open-new-account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            <span>New Account</span>
+            <small>Open one</small>
+          </button>
+        </div>
+      </section>
+
+      <!-- Accounts -->
+      <section class="ds-panel" aria-label="Your accounts">
+        <div class="ds-panel__head">
+          <h3>Your Accounts</h3>
+          <small id="accountCountLabel">0 accounts</small>
+        </div>
+        <div class="ds-accounts" id="accountsList">
+          <p style="color: var(--ds-muted);">Loading accounts…</p>
+        </div>
+      </section>
+
+      <!-- Transactions -->
+      <section class="ds-panel" aria-label="Recent transactions">
+        <div class="ds-panel__head">
+          <h3>Recent Transactions</h3>
+          <div class="ds-tx-filters" id="txFilters">
+            <button class="ds-chip is-active" data-filter="all">All</button>
+            <button class="ds-chip" data-filter="in">Money In</button>
+            <button class="ds-chip" data-filter="out">Money Out</button>
+          </div>
+        </div>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Account</th>
+                <th style="text-align:right;">Amount</th>
+                <th style="text-align:right;">Balance</th>
+              </tr>
+            </thead>
+            <tbody id="txBody">
+              <tr><td colspan="6" class="ds-table__empty">Loading transactions…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+
+<!-- Deposit -->
+<div class="ds-modal" id="depositModal" role="dialog" aria-modal="true" aria-labelledby="depositTitle">
+  <div class="ds-modal__panel">
+    <div class="ds-modal__head">
+      <div>
+        <h3 id="depositTitle">Deposit Funds</h3>
+        <small>Add money to your account</small>
+      </div>
+      <button class="ds-modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="ds-alert" id="depositAlert"></div>
+    <form id="depositForm">
+      <div class="ds-field">
+        <label for="depositAccount">Account</label>
+        <select id="depositAccount" required></select>
+      </div>
+      <div class="ds-field">
+        <label for="depositAmount">Amount (USD)</label>
+        <input type="number" id="depositAmount" min="1" step="0.01" placeholder="0.00" required />
+        <small>Minimum deposit: $1.00</small>
+      </div>
+      <div class="ds-field">
+        <label for="depositNote">Note (optional)</label>
+        <input type="text" id="depositNote" maxlength="80" placeholder="e.g. Salary" />
+      </div>
+      <div class="ds-modal__actions">
+        <button type="button" class="ds-btn ds-btn--ghost" data-close-modal>Cancel</button>
+        <button type="submit" class="ds-btn ds-btn--gold" id="depositSubmit">Deposit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Withdraw -->
+<div class="ds-modal" id="withdrawModal" role="dialog" aria-modal="true" aria-labelledby="withdrawTitle">
+  <div class="ds-modal__panel">
+    <div class="ds-modal__head">
+      <div>
+        <h3 id="withdrawTitle">Withdraw Funds</h3>
+        <small>Take money out of your account</small>
+      </div>
+      <button class="ds-modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="ds-alert" id="withdrawAlert"></div>
+    <form id="withdrawForm">
+      <div class="ds-field">
+        <label for="withdrawAccount">Account</label>
+        <select id="withdrawAccount" required></select>
+      </div>
+      <div class="ds-field">
+        <label for="withdrawAmount">Amount (USD)</label>
+        <input type="number" id="withdrawAmount" min="1" step="0.01" placeholder="0.00" required />
+        <small id="withdrawAvailable">Available: $0.00</small>
+      </div>
+      <div class="ds-field">
+        <label for="withdrawNote">Note (optional)</label>
+        <input type="text" id="withdrawNote" maxlength="80" placeholder="e.g. Rent" />
+      </div>
+      <div class="ds-modal__actions">
+        <button type="button" class="ds-btn ds-btn--ghost" data-close-modal>Cancel</button>
+        <button type="submit" class="ds-btn ds-btn--gold" id="withdrawSubmit">Withdraw</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Transfer -->
+<div class="ds-modal" id="transferModal" role="dialog" aria-modal="true" aria-labelledby="transferTitle">
+  <div class="ds-modal__panel">
+    <div class="ds-modal__head">
+      <div>
+        <h3 id="transferTitle">Send Money</h3>
+        <small>Transfer to another Don Steve account</small>
+      </div>
+      <button class="ds-modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="ds-alert" id="transferAlert"></div>
+    <form id="transferForm">
+      <div class="ds-field">
+        <label for="transferFrom">From Account</label>
+        <select id="transferFrom" required></select>
+      </div>
+      <div class="ds-field">
+        <label for="transferTo">Recipient Account Number</label>
+        <input type="text" id="transferTo" maxlength="10" placeholder="10-digit account number" required />
+      </div>
+      <div class="ds-field">
+        <label for="transferAmount">Amount (USD)</label>
+        <input type="number" id="transferAmount" min="1" step="0.01" placeholder="0.00" required />
+      </div>
+      <div class="ds-field">
+        <label for="transferNote">Note (optional)</label>
+        <input type="text" id="transferNote" maxlength="80" placeholder="e.g. Rent share" />
+      </div>
+      <div class="ds-modal__actions">
+        <button type="button" class="ds-btn ds-btn--ghost" data-close-modal>Cancel</button>
+        <button type="submit" class="ds-btn ds-btn--gold" id="transferSubmit">Send</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- New Account -->
+<div class="ds-modal" id="newAccountModal" role="dialog" aria-modal="true" aria-labelledby="newAccountTitle">
+  <div class="ds-modal__panel">
+    <div class="ds-modal__head">
+      <div>
+        <h3 id="newAccountTitle">Open New Account</h3>
+        <small>Choose an account type</small>
+      </div>
+      <button class="ds-modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="ds-alert" id="newAccountAlert"></div>
+    <form id="newAccountForm">
+      <div class="ds-field">
+        <label for="newAccountType">Account Type</label>
+        <select id="newAccountType">
+          <option value="savings">Savings — earn up to 5.25% APY</option>
+          <option value="current">Current — for daily banking</option>
+          <option value="fixed">Fixed Deposit — lock in higher rates</option>
+        </select>
+      </div>
+      <div class="ds-modal__actions">
+        <button type="button" class="ds-btn ds-btn--ghost" data-close-modal>Cancel</button>
+        <button type="submit" class="ds-btn ds-btn--gold" id="newAccountSubmit">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast stack -->
+<div class="ds-toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<script src="/js/dashboard.js" defer></script>
+</body>
+</html>
